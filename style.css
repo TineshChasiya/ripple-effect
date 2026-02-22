@@ -1,0 +1,93 @@
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+body{
+  height:100vh;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  background:#0a0f1c;
+  font-family:Segoe UI, sans-serif;
+}
+
+/* Background soft glow */
+body::before{
+  content:"";
+  position:absolute;
+  width:300px;
+  height:300px;
+  background:#00f0ff;
+  filter:blur(140px);
+  opacity:.3;
+  top:20%;
+  left:20%;
+}
+
+.liquid-btn{
+  position:relative;
+  overflow:hidden;
+  padding:18px 55px;
+  font-size:18px;
+  color:#fff;
+  border-radius:20px;
+  border:1px solid rgba(255,255,255,.2);
+  background:rgba(255,255,255,.08);
+  backdrop-filter:blur(18px);
+  -webkit-backdrop-filter:blur(18px);
+  cursor:pointer;
+  transition:.3s;
+  
+  box-shadow:
+    0 15px 40px rgba(0,0,0,.6),
+    inset 0 0 20px rgba(255,255,255,.1);
+}
+
+/* Shine layer */
+.liquid-btn::before{
+  content:"";
+  position:absolute;
+  top:0;
+  left:0;
+  width:100%;
+  height:50%;
+  border-radius:20px 20px 50% 50%;
+  background:linear-gradient(
+    to bottom,
+    rgba(255,255,255,.4),
+    transparent
+  );
+  opacity:.3;
+  pointer-events:none;
+}
+
+/* Ripple element */
+.ripple{
+  position:absolute;
+  border-radius:50%;
+  transform:scale(0);
+  animation:ripple-effect .6s linear;
+  background:rgba(255,255,255,.5);
+  pointer-events:none;
+}
+
+@keyframes ripple-effect{
+  to{
+    transform:scale(6);
+    opacity:0;
+  }
+}
+
+/* Hover 3D lift */
+.liquid-btn:hover{
+  transform:translateY(-8px);
+  box-shadow:
+    0 25px 60px rgba(0,0,0,.8),
+    inset 0 0 25px rgba(255,255,255,.15);
+}
+
+.liquid-btn:active{
+  transform:translateY(3px);
+}
